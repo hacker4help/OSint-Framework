@@ -5,7 +5,7 @@ const { websiteLookup, phoneNoLookup, usernameLookup, ipLookup, emailLookup } = 
 
 
 router.route('/website').get(websiteLookup);
-router.route('/phoneNo').get(phoneNoLookup);
+router.route('/phone').get(phoneNoLookup);
 router.route('/username').get(usernameLookup);
 router.route('/ip').get(ipLookup);
 router.route('/email').get(emailLookup);
