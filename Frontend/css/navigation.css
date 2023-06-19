@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 7px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .navbar li {
+    float: right;
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: 10px solid black;
+    margin-top: 180px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  .input-group button {
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+  
+  #results {
+    margin-top: 20px;
+  }
+  
+  #results pre {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+  }
+  
+  .flag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+  }
+  
+  .flag-container img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .search-blocks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .search-block {
+    flex-basis: 18%;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  nav {
+    position: relative;
+    background-color: black;
+    width: 70%;
+    margin: 60px auto;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul li {
+    list-style-type: none;
+    padding: 18px 30px;
+    min-width: 10%;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: aliceblue;
+  }
+  
