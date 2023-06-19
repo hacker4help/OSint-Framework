@@ -1,3 +1,5 @@
+const { exec } = require('child_process');
+
 const websiteLookup = async (req,res) => {
     res.render('website')
 }
@@ -8,6 +10,20 @@ const phoneNoLookup = async (req, res) => {
 
 const usernameLookup = async (req, res) => {
     res.render('username')
+    const command = "sherlock -u om --timeout 10";
+    exec(command , (error,stdout,stderr) => {
+    if(error){
+    console.log(`${error.message}`);
+    return;
+    }
+    if(stderr)
+    {
+    console.log(`${stderr}`);
+    return;
+    }
+    console.log(`${stdout}`);
+   });
+    
 }
 
 const ipLookup = async (req, res) => {
