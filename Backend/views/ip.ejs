@@ -1,7 +1,137 @@
 <!DOCTYPE html>
+<html>
+
 <head>
-    <title>IP Lookup</title>
+    <title>OSINT Tool - IP Address Lookup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 5px;
+            padding: 5px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .navbar li {
+            float: right;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: 5px solid black;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .input-group button {
+            padding: 8px 15px;
+            font-size: 16px;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        #results pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+
+        .flag-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .flag-container img {
+            margin-top: 10px;
+            max-width: 50%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>IP Lookup</h1>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#">Info</a></li>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+
+    <div class="flag-container">
+        <img src="/images/india-flag.png" alt="Center Image" />
+    </div>
+
+    <div class="container">
+        <h1>IP ADDRESS LOOKUP</h1>
+        <div class="input-group">
+            <label for="target">Target:</label>
+            <input type="text" id="target" placeholder="Enter target information">
+        </div>
+
+        <div class="input-group">
+            <button onclick="search()">Search</button>
+        </div>
+
+        <div id="results">
+            <h2>Results:</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script>
+        function search() {
+            var target = document.getElementById('target').value;
+
+            // Perform OSINT search using target information
+
+            // Display the results
+            var output = document.getElementById('output');
+            output.textContent = "Results for: " + target;
+        }
+    </script>
 </body>
+
+</html>
