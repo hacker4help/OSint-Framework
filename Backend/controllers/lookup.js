@@ -1,4 +1,5 @@
-const { exec } = require('child_process');
+const util = require('node:util');
+const exec = util.promisify(require('node:child_process').exec)
 
 const websiteLookup = async (req,res) => {
     res.render('website')
@@ -9,21 +10,21 @@ const phoneNoLookup = async (req, res) => {
 }
 
 const usernameLookup = async (req, res) => {
-    res.render('username')
-    const command = "sherlock -u om --timeout 10";
-    exec(command , (error,stdout,stderr) => {
+    const target = req.query.target
+    const command = `python3 ../../sherlock/sherlock ${target} --timeout 2`;
+    const result = {}
+    const {error, stdout, stderr} = await exec(command)
     if(error){
-    console.log(`${error.message}`);
-    return;
+        console.log(`${error.message}`);
+        return;
     }
-    if(stderr)
-    {
-    console.log(`${stderr}`);
-    return;
+    if(stderr) {
+        console.log(`${stderr}`);
+        return;
     }
     console.log(`${stdout}`);
-   });
-    
+    result['output'] = stdout
+    res.render('username', { result })
 }
 
 const ipLookup = async (req, res) => {
