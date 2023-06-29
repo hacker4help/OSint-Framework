@@ -5,15 +5,17 @@ body {
   padding: 0;
 }
 
-.navbar {
-  background-color: #333;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  padding: 15px;
-}
+ .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    overflow: hidden;
+    position: fixed; /* Position the navbar */
+    top: 0; /* Position the navbar at the top */
+    width: 100%; /* Make the navbar full width */
+    z-index: 999; /* Ensure the navbar is on top */
+    padding: 7px; /* Increase the navbar size to 7px */
+  }
 
 .navbar ul {
   list-style-type: none;
@@ -151,4 +153,10 @@ select {
   padding: 50px;
   width: 30%;
   height: auto;
+}
+
+  .navbar img {
+    height: 45px;
+    margin: 5px;
+    object-fit: contain;
 }
