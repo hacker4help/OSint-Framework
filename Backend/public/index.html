@@ -3,135 +3,16 @@
 
 <head>
   <title>OSINT Tool</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: lightblue;
-      /* Adding light blue background color */
-      margin: 0;
-      /* Remove default margin */
-      padding: 0;
-      /* Remove default padding */
-    }
-
-    .navbar {
-      background-color: #333;
-      overflow: hidden;
-      position: fixed;
-      /* Position the navbar */
-      top: 0;
-      /* Position the navbar at the top */
-      width: 100%;
-      /* Make the navbar full width */
-      z-index: 999;
-      /* Ensure the navbar is on top */
-      padding: 7px;
-      /* Increase the navbar size to 7px */
-    }
-
-    .navbar ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .navbar li {
-      float: right;
-    }
-
-    .navbar li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: white;
-      /* Setting container background color to white */
-      border-radius: 10px;
-      /* Adding rounded corners to the container */
-      border: 10px solid black;
-      margin-top: 180px;
-      /* Move the container 180px below the navbar */
-    }
-
-    .input-group {
-      margin-bottom: 10px;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 5px;
-      font-size: 16px;
-    }
-
-    .input-group button {
-      padding: 8px 15px;
-      font-size: 16px;
-    }
-
-    #results {
-      margin-top: 20px;
-    }
-
-    #results pre {
-      background-color: #f5f5f5;
-      padding: 10px;
-      border-radius: 5px;
-      overflow: auto;
-    }
-
-    /* Adding styles for the images */
-    .flag-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* Vertically center the image */
-      margin-top: 120px;
-      /* Move the picture 120px below the navbar */
-    }
-
-    .flag-container img {
-      max-width: 50%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    /* Adding styles for search blocks */
-    .search-blocks {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 40px;
-      /* Adjust the spacing between the blocks */
-    }
-
-    .search-block {
-      flex-basis: 18%;
-      /* Adjust the width of each search block */
-      background-color: black;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/navigation.css">
 </head>
 
 <body>
   <div class="navbar">
     <ul>
-      <li><a href="#">Info</a></li>
-      <li><a href="#">Home</a></li>
+      <li><a href="/about-us">About Us </a></li>
+      <li><a href="/info">Info</a></li>
+      <li><a href="/">Home</a></li>
     </ul>
   </div>
 
@@ -139,6 +20,29 @@
     <img src="/images/india-flag.png" alt="Center Image" />
   </div>
 
+  <nav>
+    <ul class="nav-ul">
+      <li><a href="/phone">Phone-Number</a></li>
+      <li><a href="/username">User-Name</a></li>
+      <li><a href="/website">Website</a></li>
+      <li><a href="/email">Email</a></li>
+      <li><a href="/ip">IP-Address</a></li> 
+    </ul>
+  </nav>
+  <div class="flag-container"></div>
+  <h2>NOTE:</h2>
+  <p>*OSINT provides a way to collect and analyze publicly available data, which can then be used to make informed
+    decisions or satisfy your curiosity. Below we look at 10 of the leading open-source OSINT sites, services, and code
+    - including search engines and data visualization tools - that are available to us all OSINT, short for open-source
+    intelligence, is a process designed to gather information from public sources. For example, these sources may be
+    government databases, websites, or brochures. To achieve this, investigators use several manual as well as automatic
+    tools.OSINT, short for open-source intelligence, is a process designed to gather information from public sources.
+    These sources may be government databases, websites, or brochures.*</p>
+  </div>
+
+  <div class="footer">
+    With love, from Hacker4Help!
+  </div>
 </body>
 
 </html>
