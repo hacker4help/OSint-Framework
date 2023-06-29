@@ -133,7 +133,14 @@ nav ul li a {
   text-align: center;
   font-size: 12px;
 }
-
+.footera {
+  margin-top: 0px;
+  background-color: black;
+  color: #d2b48c;
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+}
 select {
   width: 250px; /* Adjust the width as needed */
   padding: 8px;
