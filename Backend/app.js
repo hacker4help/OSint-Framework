@@ -7,6 +7,9 @@ app.use(express.json());
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use('/', lookupRouter);
+app.use(function(req,res){
+  res.status(404).render('error-page');
+});
 
 const port = process.env.PORT || 3000;
 const start = async () => {

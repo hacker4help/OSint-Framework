@@ -3,99 +3,16 @@
 
 <head>
     <title>OSINT Tool - Email Lookup</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: lightblue;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar {
-            background-color: #333;
-            overflow: hidden;
-        }
-
-        .navbar ul {
-            list-style-type: none;
-            margin: 5px;
-            padding: 5px;
-            overflow: hidden;
-            margin-bottom: 5px;
-        }
-
-        .navbar li {
-            float: right;
-        }
-
-        .navbar li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            border: 5px solid black;
-        }
-
-        .input-group {
-            margin-bottom: 10px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 5px;
-            font-size: 16px;
-        }
-
-        .input-group button {
-            padding: 8px 15px;
-            font-size: 16px;
-        }
-
-        #results {
-            margin-top: 20px;
-        }
-
-        #results pre {
-            background-color: #f5f5f5;
-            padding: 10px;
-            border-radius: 5px;
-            overflow: auto;
-        }
-
-        .flag-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .flag-container img {
-            margin-top: 10px;
-            max-width: 50%;
-            height: auto;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/navigation.css">
 </head>
 
 <body>
 
     <div class="navbar">
         <ul>
-            <li><a href="#">Info</a></li>
+            <li><a href="/about-us">About Us </a></li>
+            <li><a href="/info">Info</a></li>
             <li><a href="/">Home</a></li>
         </ul>
     </div>
@@ -106,32 +23,45 @@
 
     <div class="container">
         <h1>EMAIL LOOKUP</h1>
-        <div class="input-group">
-            <label for="target">Target:</label>
-            <input type="text" id="target" placeholder="Enter target information">
-        </div>
-
-        <div class="input-group">
-            <button onclick="search()">Search</button>
-        </div>
-
+        <form action="/email" method="get">
+            <div class="input-group">
+                <label for="target">Target:</label>
+                <input name="target" type="text" id="target" placeholder="Enter domain of email for Harvester search">
+            </div>
+            <div class="input-group">
+                <label for="tool">Which lookup tool do you want to use</label>
+                <select name="tool" id="tool">
+                  <option value="Harvester">Harvester</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <button type="submit" onclick="search()">Search</button>
+            </div>
+        </form>
         <div id="results">
             <h2>Results:</h2>
-            <pre id="output"></pre>
+            <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
+            <pre id="output">
+                <% if (result) { %>
+                    <%= result['output'] %>
+                <% } %>
+            </pre>
         </div>
     </div>
-
-    <script>
-        function search() {
-            var target = document.getElementById('target').value;
-
-            // Perform OSINT search using target information
-
-            // Display the results
-            var output = document.getElementById('output');
-            output.textContent = "Results for: " + target;
-        }
-    </script>
+    <div class="flag-container"></div>
+        <h2>NOTE:</h2>
+        <p>*OSINT provides a way to collect and analyze publicly available data, which can then be used to make informed
+    decisions or satisfy your curiosity. Below we look at 10 of the leading open-source OSINT sites, services, and code
+    - including search engines and data visualization tools - that are available to us all OSINT, short for open-source
+    intelligence, is a process designed to gather information from public sources. For example, these sources may be
+    government databases, websites, or brochures. To achieve this, investigators use several manual as well as automatic
+    tools.OSINT, short for open-source intelligence, is a process designed to gather information from public sources.
+    These sources may be government databases, websites, or brochures.*</p>
+    </div>
+    <div class="footer">
+        With love, from Hacker4Help!
+    </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
