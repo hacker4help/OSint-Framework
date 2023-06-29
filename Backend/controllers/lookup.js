@@ -46,7 +46,7 @@ const usernameLookup = async (req, res) => {
     const target = req.query.target
     const result = {}
     if (target){
-        const command = `python3 ../../sherlock/sherlock ${target} --timeout 2`;
+        const command = `python3 ~/Desktop/Tools/sherlock/sherlock/sherlock.py ${target} --timeout 2`;
         const {error, stdout, stderr} = await exec(command)
         if(error){
             console.log(`${error.message}`);
@@ -97,11 +97,21 @@ const ipLookup = async (req, res) => {
 }
 
 const emailLookup = async (req, res) => {
-    const target = req.query.target
+    const { tool, target } = req.query
     const result = {}
-    if (target){
-        // exec('cd ../../../theHarvester')
-        const command = `cd ../../theHarvester && python3 ./theHarvester.py -d ${target} -b all | grep ${target}`;
+    if (target || tool){
+        var command = ''
+        switch (tool) {
+            case 'mosint':
+                command = `go run main.go ${target}`;
+                break;
+            case 'Harvester':
+                command = `cd ../../theHarvester && python3 ./theHarvester.py -d ${target} -b all | grep ${target}`;
+                break;
+            default:
+                break;
+        }
+        console.log(command);
         const {error, stdout, stderr} = await exec(command)
         if(error){
             console.log(`${error.message}`);
