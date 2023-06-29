@@ -46,7 +46,7 @@ const usernameLookup = async (req, res) => {
     const target = req.query.target
     const result = {}
     if (target){
-        const command = `python3 ../../sherlock/sherlock ${target} --timeout 2`;
+        const command = `python3 ~/Desktop/Tools/sherlock/sherlock/sherlock.py ${target} --timeout 2`;
         const {error, stdout, stderr} = await exec(command)
         if(error){
             console.log(`${error.message}`);

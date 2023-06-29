@@ -129,7 +129,9 @@ nav ul li a {
   margin-top: 15px;
   background-color: black;
   color: white;
-  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
   text-align: center;
   font-size: 12px;
 }
@@ -137,7 +139,10 @@ nav ul li a {
   margin-top: 0px;
   background-color: black;
   color: #d2b48c;
-  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
   text-align: center;
   font-size: 12px;
 }
