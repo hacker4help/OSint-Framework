@@ -8,11 +8,11 @@
 <body>
 
   <div class="navbar">
-    <img src="/images/smallh4h.png" alt="logo" /> 
+    <a href="/"><img src="/images/New-Logo.png" alt="logo" /> </a>
+    <div class="home"><ul> <li><a  href="/">   Home </a></li></ul></div>
     <ul>
         <li><a href="/about-us">About Us </a></li>
         <li><a href="/info">Info</a></li>
-        <li><a href="/">Home</a></li>
     </ul>
 </div>
 
@@ -30,14 +30,20 @@
       <div class="input-group">
         <label for="tool">Which lookup tool do you want to use</label>
         <select name="tool" id="tool">
+          <option value="select">Select Tool</option>
           <option value="sherlock">Sherlock</option>
+          <option value="webmil">Webmil</option>
+          <option value="tweeter">TweeterID</option>
+          <option value="lookupid">Lookup-ID</option>
         </select>
       </div>
       <div class="input-group">
         <button type="submit" onclick="search()">Search</button>
       </div>
     </form>
-
+    <div class="hint-text">
+            <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
+        </div>
     <div id="results">
       <h2>Results:</h2>
       <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
@@ -60,5 +66,28 @@ Feedback or new tool suggestions are extremely welcome! Please feel free to reac
     With ❤️, from Hacker4Help!
   </div>
   <script src="js/script.js"></script>
+  <script>
+        // Function to update the hint text based on the selected tool
+        document.getElementById("tool").addEventListener("change", function () {
+          var hint = document.getElementById("hint");
+          var selectedTool = this.value;
+  
+      if (selectedTool === "select") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Select the tool you want to use.";
+      } else if (selectedTool === "sherlock") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> You can get info about a username available on different websites through this tool. Please make sure you wait for all the results. There might also possibly be some false positives in the results. So, make sure you check all the results produced because some of the results might be genuine and useful.";
+      } else if (selectedTool ==="webmil") {
+        window.location.href = "https://webmii.com/"
+      } else if (selectedTool ==="tweeter") {
+        window.location.href = "https://tweeterid.com/"
+      } else if (selectedTool ==="lookupid") {
+        window.location.href = "https://lookup-id.com/"
+      } else {
+        hint.innerHTML = ""; // Clear the hint if no tool is selected
+      }
+        });
+      </script>
 </body>
 </html>

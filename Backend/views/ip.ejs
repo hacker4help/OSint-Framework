@@ -10,11 +10,11 @@
 <body>
 
     <div class="navbar">
-        <img src="/images/smallh4h.png" alt="logo" /> 
+        <a href="/"><img src="/images/New-Logo.png" alt="logo" /> </a>
+        <div class="home"><ul> <li><a  href="/">   Home </a></li></ul></div>
         <ul>
             <li><a href="/about-us">About Us </a></li>
             <li><a href="/info">Info</a></li>
-            <li><a href="/">Home</a></li>
         </ul>
     </div>
 
@@ -32,16 +32,24 @@
             <div class="input-group">
                 <label for="tool">Which lookup tool do you want to use</label>
                 <select name="tool" id="tool">
+                  <option value="select">Select Tool</option>
                   <option value="nmap">Nmap</option>
                   <option value="ping">Ping</option>
                   <option value="traceroute">Traceroute</option>
+                  <option value="ipaddr">IPAddress.com</option>
+                  <option value="myip">MyIP.ms</option>
+                  <option value="viewdns">ViewDNS</option>
+                  <option value="iptracker">IP Tracker</option>
+                  <option value="vtotal">Virus Total</option>
                 </select>
             </div>
             <div class="input-group">
                 <button type="submit" onclick="search()">Search</button>
             </div>
         </form>
-
+        <div class="hint-text">
+            <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
+        </div>
         <div id="results">
             <h2>Results:</h2>
             <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
@@ -64,6 +72,39 @@
         With ❤️, from Hacker4Help!
       </div>
     <script src="js/script.js"></script>
+    <script>
+      // Function to update the hint text based on the selected tool
+      document.getElementById("tool").addEventListener("change", function () {
+        var hint = document.getElementById("hint");
+        var selectedTool = this.value;
+
+        if (selectedTool ==="select") {
+            hint.innerHTML =
+              "<strong>Hint :</strong> Select the tool you want to use";
+        } else if (selectedTool === "nmap") {
+          hint.innerHTML =
+            "<strong>Hint :</strong> Nmap utilizes various scanning techniques, like TCP, UCP, etc, to gather comprehensive information about the network infrastructure.";
+        } else if (selectedTool === "ping") {
+          hint.innerHTML =
+            "<strong>Hint :</strong> It is a network diagnostic tool used to determine the round-time trip (RTT) between a device and a specified IP address or hostname, helping to assess network connectivity and troubleshoot potential issues. It is also used to check if the server is still active or not.";
+        } else if (selectedTool === "traceroute") {
+          hint.innerHTML =
+            "<strong>Hint :</strong> You will get results on IP addresses for the network hops between your computer and the target.  You can use the results to reveal the presence of proxy servers or other intermediate devices that are used to hide the actual location of a target.";
+        }else if (selectedTool === "ipaddr") {
+          window.location.href = "https://www.ipaddress.com/"
+        }else if (selectedTool === "myip") {
+          window.location.href = "https://myip.ms/"
+        }else if (selectedTool === "viewdns") {
+          window.location.href = "https://viewdns.info/"
+        }else if (selectedTool === "iptracker") {
+          window.location.href = "https://www.ip-tracker.org/"
+        }else if (selectedTool === "vtotal") {
+          window.location.href = "https://www.virustotal.com/gui/home/search"
+        } else {
+          hint.innerHTML = ""; // Clear the hint if no tool is selected
+        }
+      });
+    </script>
 </body>
 
 </html>
