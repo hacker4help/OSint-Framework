@@ -10,11 +10,11 @@
 <body>
 
     <div class="navbar">
-        <img src="/images/smallh4h.png" alt="logo" /> 
+        <a href="/"><img src="/images/New-Logo.png" alt="logo" /> </a>
+        <div class="home"><ul> <li><a  href="/">   Home </a></li></ul></div>
         <ul>
             <li><a href="/about-us">About Us </a></li>
             <li><a href="/info">Info</a></li>
-            <li><a href="/">Home</a></li>
         </ul>
     </div>
 
@@ -32,17 +32,23 @@
             <div class="input-group">
                 <label for="tool">Which lookup tool do you want to use</label>
                 <select name="tool" id="tool">
+                  <option value="select">Select Tool</option>
                   <option value="whois">WhoIs</option>
                   <option value="nslookup">Nslookup</option>
                   <option value="dig">Dig</option>
                   <option value="host">Host</option>
+                  <option value="godaddy">GoDaddy WhoIs</option>
+                  <option value="domaintools">WhoIs DomainTools</option>
+                  <option value="whoxy">Whoxy</option>
                 </select>
             </div>
             <div class="input-group">
                 <button type="submit" onclick="search()">Search</button>
             </div>
         </form>
-
+        <div class="hint-text">
+            <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
+        </div>
         <div id="results">
             <h2>Results:</h2>
             <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
@@ -65,6 +71,38 @@
         With ❤️, from Hacker4Help!
       </div>
     <script src="js/script.js"></script>
+    <script>
+    // Function to update the hint text based on the selected tool
+    document.getElementById("tool").addEventListener("change", function () {
+      var hint = document.getElementById("hint");
+      var selectedTool = this.value;
+
+      if (selectedTool === "select") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Select the tool you want to use.";
+      } else if (selectedTool === "whois") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Whois record will contain information such as the name and contact information of the Registrant (who owns the domain), the name and contact information of the registrar Registrar (the organization or commercial entity that registered the domain name), the registration dates, the name servers, the most recent update, and the expiration date.";
+      } else if (selectedTool === "nslookup") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Nslookup is a command-line tool used to query the Domain Name System (DNS) to obtain information about DNS records, such as IP addresses associated with domain names, mail exchange servers, and name server information, making it useful for troubleshooting DNS-related issues and verifying DNS configurations.";
+      } else if (selectedTool === "dig") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Dig, short for Domain Information Groper, is a command-line tool used for querying DNS servers to retrieve information about specific domain names, such as IP addresses, name server records, and DNSSEC information, making it valuable for network troubleshooting and DNS analysis.";
+      }else if (selectedTool === "host") {
+        hint.innerHTML =
+          "<strong>Hint :</strong> Host is a command-line tool that performs DNS lookups and provides information about domain names, including IP addresses, name server records, and various DNS resource records, helping to diagnose network issues and verify DNS configurations.";
+      } else if (selectedTool === "godaddy") {
+        window.location.href = "https://ca.godaddy.com/whois"
+      } else if (selectedTool === "domaintools") {
+        window.location.href = "https://whois.domaintools.com/"
+      } else if (selectedTool === "whoxy") {
+        window.location.href = "https://www.whoxy.com/"
+      } else {
+        hint.innerHTML = ""; // Clear the hint if no tool is selected
+      }
+    });
+  </script>
 </body>
 
 </html>

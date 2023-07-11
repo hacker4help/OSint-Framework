@@ -10,11 +10,11 @@
 <body>
 
     <div class="navbar">
-        <img src="/images/smallh4h.png" alt="logo" /> 
+        <a href="/"><img src="/images/New-Logo.png" alt="logo" /> </a>
+        <div class="home"><ul> <li><a  href="/">   Home </a></li></ul></div>
         <ul>
             <li><a href="/about-us">About Us </a></li>
             <li><a href="/info">Info</a></li>
-            <li><a href="/">Home</a></li>
         </ul>
     </div>
 
@@ -32,14 +32,21 @@
             <div class="input-group">
                 <label for="tool">Which lookup tool do you want to use</label>
                 <select name="tool" id="tool">
+                  <option value="select">Select Tool</option>
                   <option value="Harvester">Harvester</option>
                   <option value="mosint">Mosint</option>
+                  <option value="epieos">Epieos</option>
+                  <option value="emailrep">Simple Email Reputation</option>
+                  <option value="haveibeenpwned">Have I Been Pwned</option>
                 </select>
             </div>
             <div class="input-group">
                 <button type="submit" onclick="search()">Search</button>
             </div>
         </form>
+        <div class="hint-text">
+            <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
+        </div>
         <div id="results">
             <h2>Results:</h2>
             <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
@@ -62,6 +69,32 @@
         With ❤️, from Hacker4Help!
       </div>
     <script src="js/script.js"></script>
+    <script>
+        // Function to update the hint text based on the selected tool
+        document.getElementById("tool").addEventListener("change", function () {
+          var hint = document.getElementById("hint");
+          var selectedTool = this.value;
+  
+          if (selectedTool === "select") {
+            hint.innerHTML =
+              "<strong>Hint :</strong> Select the tool you want to use";
+          } else if (selectedTool === "Harvester") {
+            hint.innerHTML =
+              "<strong>Hint :</strong>  It searches all the different APIs included in the tool like Hunter, Github, Brave, Google, Bing and many more for the specific email domain that we enter. Please make sure to wait for some time for the results to be displayed. ";
+          } else if (selectedTool === "mosint") {
+            hint.innerHTML =
+              "<strong>Hint :</strong> This tool gives us the IP address, NS, MX, TXT record of the given target email address. It uses various APIs like Hunter, Emailrep, IntelX, psmdb and breach directory.  ";
+          }else if (selectedTool === "epieos") {
+            window.location.href = "https://epieos.com/?t=email"
+          } else if (selectedTool === "emailrep") {
+            window.location.href = "https://emailrep.io/"
+          } else if (selectedTool === "haveibeenpwned") {
+            window.location.href = "https://haveibeenpwned.com/"
+          }else {
+            hint.innerHTML = ""; // Clear the hint if no tool is selected
+          }
+        });
+      </script>
 </body>
 
 </html>
