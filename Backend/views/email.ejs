@@ -32,18 +32,22 @@
             <div class="input-group">
                 <label for="tool">Which lookup tool do you want to use</label>
                 <select name="tool" id="tool">
-                  <option value="select">Select Tool</option>
+                  <option value="select" selected>Select Tool</option>
                   <option value="Harvester">Harvester</option>
                   <option value="mosint">Mosint</option>
+                  <option value="rocketreach">RocketReach</option>
                   <option value="epieos">Epieos</option>
                   <option value="emailrep">Simple Email Reputation</option>
                   <option value="haveibeenpwned">Have I Been Pwned</option>
                 </select>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="search-btn">
                 <button type="submit" onclick="search()">Search</button>
             </div>
         </form>
+        <div class="input-group" id="redirect" style="display: none;">
+          <button type="button"><a href="#" style="text-decoration:none; color:black;">Redirect to Tool</a></button>
+        </div>
         <div class="hint-text">
             <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
         </div>
@@ -74,22 +78,48 @@
         document.getElementById("tool").addEventListener("change", function () {
           var hint = document.getElementById("hint");
           var selectedTool = this.value;
+          var search_bttn = document.getElementById("search-btn")
+          var search_a = document.getElementById("redirect")
   
           if (selectedTool === "select") {
             hint.innerHTML =
               "<strong>Hint :</strong> Select the tool you want to use";
+            search_a.style.display = "none"
+            search_bttn.style.display = "block"
           } else if (selectedTool === "Harvester") {
             hint.innerHTML =
               "<strong>Hint :</strong>  It searches all the different APIs included in the tool like Hunter, Github, Brave, Google, Bing and many more for the specific email domain that we enter. Please make sure to wait for some time for the results to be displayed. ";
+            search_a.style.display = "none"
+            search_bttn.style.display = "block"
           } else if (selectedTool === "mosint") {
             hint.innerHTML =
               "<strong>Hint :</strong> This tool gives us the IP address, NS, MX, TXT record of the given target email address. It uses various APIs like Hunter, Emailrep, IntelX, psmdb and breach directory.  ";
-          }else if (selectedTool === "epieos") {
-            window.location.href = "https://epieos.com/?t=email"
+            search_a.style.display = "none"
+            search_bttn.style.display = "block"
+          } else if (selectedTool === "rocketreach") {
+            hint.innerHTML = 
+              "<strong>Hint :</strong> Allows individuals and businesses to search for email addresses,  provides users with access to an extensive database of professional contact information."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://rocketreach.co/"
+            search_bttn.style.display = "none"
+          } else if (selectedTool === "epieos") {
+            hint.innerHTML = 
+              "<strong>Hint :</strong> The Site’s unique results when compared to other websites here include links like Google maps, Google Calendar, Google Plus Archive for the given email. For example, a google maps link might give out things like reviews posted by the user and more, which will help you in your search about the target(Ex: Their city of residence). You might also find something in the Google Plus archives if the target ever used the Google Plus service."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://epieos.com/?t=email"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "emailrep") {
-            window.location.href = "https://emailrep.io/"
+            hint.innerHTML =
+              "<strong>Hint :</strong> Gets the reputation of an email address for various factors such as spam reports, blacklists, and email deliverability data. The results you can expect are about profiles on well known sites, seen in data breaches or credential leaks, malicious or suspicious activity from this address."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://emailrep.io/"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "haveibeenpwned") {
-            window.location.href = "https://haveibeenpwned.com/"
+            hint.innerHTML = 
+              "<strong>Hint :</strong>Allows you to search across multiple data breaches to see if your email address or phone number has been compromised."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://haveibeenpwned.com/"
+            search_bttn.style.display = "none"
           }else {
             hint.innerHTML = ""; // Clear the hint if no tool is selected
           }

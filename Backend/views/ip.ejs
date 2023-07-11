@@ -43,10 +43,13 @@
                   <option value="vtotal">Virus Total</option>
                 </select>
             </div>
-            <div class="input-group">
+            <div class="input-group" id="search-btn">
                 <button type="submit" onclick="search()">Search</button>
             </div>
         </form>
+        <div class="input-group" id="redirect" style="display: none;">
+          <button type="button"><a href="#" style="text-decoration:none; color:black;">Redirect to Tool</a></button>
+        </div>
         <div class="hint-text">
             <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
         </div>
@@ -77,29 +80,59 @@
       document.getElementById("tool").addEventListener("change", function () {
         var hint = document.getElementById("hint");
         var selectedTool = this.value;
+        var search_bttn = document.getElementById("search-btn")
+        var search_a = document.getElementById("redirect")
 
         if (selectedTool ==="select") {
             hint.innerHTML =
               "<strong>Hint :</strong> Select the tool you want to use";
+            search_a.style.display = "none"
+            search_bttn.style.display = "block"
         } else if (selectedTool === "nmap") {
           hint.innerHTML =
             "<strong>Hint :</strong> Nmap utilizes various scanning techniques, like TCP, UCP, etc, to gather comprehensive information about the network infrastructure.";
+          search_a.style.display = "none"
+          search_bttn.style.display = "block"
         } else if (selectedTool === "ping") {
           hint.innerHTML =
             "<strong>Hint :</strong> It is a network diagnostic tool used to determine the round-time trip (RTT) between a device and a specified IP address or hostname, helping to assess network connectivity and troubleshoot potential issues. It is also used to check if the server is still active or not.";
+          search_a.style.display = "none"
+          search_bttn.style.display = "block"
         } else if (selectedTool === "traceroute") {
           hint.innerHTML =
             "<strong>Hint :</strong> You will get results on IP addresses for the network hops between your computer and the target.  You can use the results to reveal the presence of proxy servers or other intermediate devices that are used to hide the actual location of a target.";
+          search_a.style.display = "none"
+          search_bttn.style.display = "block"
         }else if (selectedTool === "ipaddr") {
-          window.location.href = "https://www.ipaddress.com/"
+          hint.innerHTML = 
+            "<strong>Hint :</strong> Gets the info for an IP address, such as its location, owner, and associated domain names."
+          search_a.style.display = "block"
+          search_a.firstElementChild.firstElementChild.href = "https://www.ipaddress.com/"
+          search_bttn.style.display = "none"
         }else if (selectedTool === "myip") {
-          window.location.href = "https://myip.ms/"
+          hint.innerHTML = 
+            "<strong>Hint :</strong> Has tools to discover the IP address and geolocation of a website or server,information about web hosting providers, including their IP ranges, company details, and server statistics."
+          search_a.style.display = "block"
+          search_a.firstElementChild.firstElementChild.href = "https://myip.ms/"
+          search_bttn.style.display = "none"
         }else if (selectedTool === "viewdns") {
-          window.location.href = "https://viewdns.info/"
+          hint.innerHTML = 
+            "<strong>Hint :</strong> It is a website that offers a range of tools and services related to domain names and DNS (Domain Name System)."
+          search_a.style.display = "block"
+          search_a.firstElementChild.firstElementChild.href = "https://viewdns.info/"
+          search_bttn.style.display = "none"
         }else if (selectedTool === "iptracker") {
-          window.location.href = "https://www.ip-tracker.org/"
+          hint.innerHTML = 
+            "<strong>Hint :</strong> Input an IP address and get its location, including city, country, latitude, and longitude. It may also provide additional details such as the internet service provider (ISP)."
+          search_a.style.display = "block"
+          search_a.firstElementChild.firstElementChild.href = "https://www.ip-tracker.org/"
+          search_bttn.style.display = "none"
         }else if (selectedTool === "vtotal") {
-          window.location.href = "https://www.virustotal.com/gui/home/search"
+          hint.innerHTML = 
+            "<strong>Hint :</strong> Get results about any reports on malicious activity from different sources for the IP address you enter."
+          search_a.style.display = "block"
+          search_a.firstElementChild.firstElementChild.href = "https://www.virustotal.com/gui/home/search"
+          search_bttn.style.display = "none"
         } else {
           hint.innerHTML = ""; // Clear the hint if no tool is selected
         }

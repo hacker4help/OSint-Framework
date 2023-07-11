@@ -37,13 +37,16 @@
           <option value="lookupid">Lookup-ID</option>
         </select>
       </div>
-      <div class="input-group">
+      <div class="input-group" id="search-btn">
         <button type="submit" onclick="search()">Search</button>
       </div>
     </form>
+    <div class="input-group" id="redirect" style="display: none;">
+      <button type="button"><a href="#" style="text-decoration:none; color:black;">Redirect to Tool</a></button>
+    </div>
     <div class="hint-text">
-            <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
-        </div>
+      <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
+    </div>
     <div id="results">
       <h2>Results:</h2>
       <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
@@ -71,19 +74,37 @@ Feedback or new tool suggestions are extremely welcome! Please feel free to reac
         document.getElementById("tool").addEventListener("change", function () {
           var hint = document.getElementById("hint");
           var selectedTool = this.value;
+          var search_bttn = document.getElementById("search-btn")
+          var search_a = document.getElementById("redirect")
   
       if (selectedTool === "select") {
         hint.innerHTML =
           "<strong>Hint :</strong> Select the tool you want to use.";
+        search_a.style.display = "none"
+        search_bttn.style.display = "block"
       } else if (selectedTool === "sherlock") {
         hint.innerHTML =
           "<strong>Hint :</strong> You can get info about a username available on different websites through this tool. Please make sure you wait for all the results. There might also possibly be some false positives in the results. So, make sure you check all the results produced because some of the results might be genuine and useful.";
+        search_a.style.display = "none"
+        search_bttn.style.display = "block"
       } else if (selectedTool ==="webmil") {
-        window.location.href = "https://webmii.com/"
+        hint.innerHTML = 
+          "<strong>Hint :</strong> Enter a person’s full name and get possible mentions of that name on different websites. Make sure you check all the results for useful information,since some results might be false and irrelevant."
+        search_a.style.display = "block"
+        search_a.firstElementChild.firstElementChild.href = "https://webmii.com/"
+        search_bttn.style.display = "none"
       } else if (selectedTool ==="tweeter") {
-        window.location.href = "https://tweeterid.com/"
+        hint.innerHTML = 
+          "<strong>Hint :</strong> Gets you the Twitter ID for @handle you enter, which is a unique value that every account on Twitter has.  It can be useful since although an account can change its @handle, it can never change its Twitter ID. No two people have the same ID."
+        search_a.style.display = "block"
+        search_a.firstElementChild.firstElementChild.href = "https://tweeterid.com/"
+        search_bttn.style.display = "none"
       } else if (selectedTool ==="lookupid") {
-        window.location.href = "https://lookup-id.com/"
+        hint.innerHTML = 
+          "<strong>Hint :</strong> Enter a facebook username and get the Facebook numeric ID and profile link. It is sometimes helpful in finding the profiles generally masked by other similarly named profiles on alphabetical search. Know that it may not always lead to the profile of your target."
+        search_a.style.display = "block"
+        search_a.firstElementChild.firstElementChild.href = "https://lookup-id.com/"
+        search_bttn.style.display = "none"
       } else {
         hint.innerHTML = ""; // Clear the hint if no tool is selected
       }

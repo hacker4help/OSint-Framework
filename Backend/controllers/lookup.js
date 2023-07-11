@@ -4,7 +4,7 @@ const exec = util.promisify(require('node:child_process').exec)
 const websiteLookup = async (req,res) => {
     const { tool, target } = req.query
     const result = {}
-    if (target){
+    if (target || tool){
         var command = ''
         switch (tool) {
             case 'whois':
@@ -18,7 +18,7 @@ const websiteLookup = async (req,res) => {
                 break;
             case 'host':
                 command = `host ${target}`
-            break;
+                break;
             default:
                 break;
         }
@@ -39,7 +39,23 @@ const websiteLookup = async (req,res) => {
 }
 
 const phoneNoLookup = async (req, res) => {
-    res.render('phone')
+    const target = req.query.target
+    const result = {}
+    if (target){
+        const command = `truecallerjs --nc -s ${target}`;
+        const {error, stdout, stderr} = await exec(command)
+        if(error){
+            console.log(`${error.message}`);
+            return;
+        }
+        if(stderr) {
+            console.log(`${stderr}`);
+            return;
+        }
+        console.log(`${stdout}`);
+        result['output'] = stdout
+    }
+    res.render('phone', { result })
 }
 
 const usernameLookup = async (req, res) => {
@@ -106,7 +122,7 @@ const emailLookup = async (req, res) => {
                 command = `go run main.go ${target}`;
                 break;
             case 'Harvester':
-                command = `cd ../../theHarvester && python3 ./theHarvester.py -d ${target} -b all | grep ${target}`;
+                command = `theHarvester -d ${target} -b all | grep ${target}`;
                 break;
             default:
                 break;
