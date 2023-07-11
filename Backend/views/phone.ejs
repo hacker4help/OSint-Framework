@@ -24,24 +24,30 @@
 
     <div class="container">
         <h1>PHONE NUMBER LOOKUP</h1>
-        <div class="input-group">
-            <label for="target">Target:</label>
-            <input type="text" id="target" placeholder="Enter target information">
-        </div>
-        <div class="input-group">
-                <label for="tool">Which lookup tool do you want to use</label>
-                <select name="tool" id="tool">
-                  <option value="select">Select Tool</option>
-                  <option value="gpay">GPay</option>
-                  <option value="freecarrier">FreeCarrierLookup</option>
-                  <option value="jio">Jio Recharge</option>
-                  <option value="airtel">Airtel Recharge</option>
-                  <option value="vi">Vi Recharge</option>
-                  <option value="freecharge">Freecharge</option>
-                </select>
-            </div>
-        <div class="input-group">
-            <button onclick="search()">Search</button>
+        <form action="/phone" method="get">
+          <div class="input-group">
+              <label for="target">Target:</label>
+              <input name="target" type="text" id="target" placeholder="Enter target information">
+          </div>
+          <div class="input-group">
+                  <label for="tool">Which lookup tool do you want to use</label>
+                  <select name="tool" id="tool">
+                    <option value="select">Select Tool</option>
+                    <option value="truecallerjs">truecallerjs</option>
+                    <option value="gpay">GPay</option>
+                    <option value="freecarrier">FreeCarrierLookup</option>
+                    <option value="jio">Jio Recharge</option>
+                    <option value="airtel">Airtel Recharge</option>
+                    <option value="vi">Vi Recharge</option>
+                    <option value="freecharge">Freecharge</option>
+                  </select>
+              </div>
+          <div class="input-group" id="search-btn">
+              <button type="submit" onclick="search()">Search</button>
+          </div>
+        </form>
+        <div class="input-group" id="redirect" style="display: none;">
+          <button type="button"><a href="#" style="text-decoration:none; color:black;">Redirect to Tool</a></button>
         </div>
         <div class="hint-text">
             <p id="hint"><strong>Hint :</strong> Select the tool you want to use</p>
@@ -49,7 +55,11 @@
         <div id="results">
             <h2>Results:</h2>
             <img id="loading-image" src="/loading.gif" alt="Loading..." style="display: none;">
-            <pre id="output"></pre>
+            <pre id="output">
+              <% if (result) { %>
+                <%= result['output'] %>
+              <% } %>
+            </pre>
         </div>
     </div>
     <div class="footer">
@@ -69,22 +79,53 @@
         document.getElementById("tool").addEventListener("change", function () {
           var hint = document.getElementById("hint");
           var selectedTool = this.value;
+          var search_bttn = document.getElementById("search-btn")
+          var search_a = document.getElementById("redirect")
   
           if (selectedTool === "select") {
             hint.innerHTML =
               "<strong>Hint :</strong> Select the tool you want to use";
+          } else if (selectedTool === "truecallerjs") {
+            hint.innerHTML =
+              "<strong>Hint :</strong>  It provides lots of information of the user of the phone number like location, name and even email sometimes.";
+            search_a.style.display = "none"
+            search_bttn.style.display = "block"
           } else if (selectedTool === "gpay") {
-            window.location.href = "https://pay.google.com/intl/en_in/about/"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> Open the “Google pay” app on your phone and search up the phone number. This might help in finding the name of the target available on Google pay. If you don’t have it installed already, visit the above link."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://pay.google.com/intl/en_in/about/"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "freecarrier") {
-            window.location.href = "https://freecarrierlookup.com/"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> Give out similar information like carrier information and time zone of the phone Number."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://freecarrierlookup.com/"
+            search_bttn.style.display = "none"
           }else if (selectedTool === "jio") {
-            window.location.href = "https://www.jio.com/selfcare/recharge/mobility/"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> You can try entering the phone number in the recharge pages of popular telecom companies or the Recharge website listed above. If a particular website proceeds on the recharge of a phone number, it’s highly likely that it belongs to that carrier. Don’t miss checking in other sections like Postpaid."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://www.jio.com/selfcare/recharge/mobility/"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "airtel") {
-            window.location.href = "https://www.airtel.in/"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> You can try entering the phone number in the recharge pages of popular telecom companies or the Recharge website listed above. If a particular website proceeds on the recharge of a phone number, it’s highly likely that it belongs to that carrier. Don’t miss checking in other sections like Postpaid."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://www.airtel.in/"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "vi") {
-            window.location.href = "https://www.myvi.in/prepaid/online-mobile-recharge"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> You can try entering the phone number in the recharge pages of popular telecom companies or the Recharge website listed above. If a particular website proceeds on the recharge of a phone number, it’s highly likely that it belongs to that carrier. Don’t miss checking in other sections like Postpaid."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://www.myvi.in/prepaid/online-mobile-recharge"
+            search_bttn.style.display = "none"
           } else if (selectedTool === "freecharge") {
-            window.location.href = "https://www.freecharge.in/mobile-recharge"
+            hint.innerHTML = 
+              "<strong>Hint :</strong> You can try entering the phone number in the recharge pages of popular telecom companies or the Recharge website listed above. If a particular website proceeds on the recharge of a phone number, it’s highly likely that it belongs to that carrier. Don’t miss checking in other sections like Postpaid."
+            search_a.style.display = "block"
+            search_a.firstElementChild.firstElementChild.href = "https://www.freecharge.in/mobile-recharge"
+            search_bttn.style.display = "none"
           } else {
             hint.innerHTML = ""; // Clear the hint if no tool is selected
           }
